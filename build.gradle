@@ -1,0 +1,41 @@
+plugins {
+    alias(libs.plugins.fabric.loom)
+    id 'maven-publish'
+}
+
+version = project.findProperty("mod_version")
+group = project.findProperty("maven_group")
+
+base {
+    archivesName = project.findProperty("archives_base_name")
+}
+
+dependencies {
+    minecraft libs.minecraft
+    mappings libs.yarn.mappings
+    modImplementation libs.fabric.loader
+    modImplementation libs.fabric.api
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "loader_version", project.findProperty("loader_version")
+    inputs.property "minecraft_version", project.findProperty("minecraft_version")
+
+    filesMatching("fabric.mod.json") {
+        expand(
+                "version": project.version,
+                "loader_version": project.findProperty("loader_version"),
+                "minecraft_version": project.findProperty("minecraft_version")
+        )
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}

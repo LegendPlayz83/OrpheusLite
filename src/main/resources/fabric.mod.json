@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "orpheuslite",
+  "version": "${version}",
+  "name": "Orpheus Lite",
+  "description": "Adds the Orpheus companion mob and its custom dimension portal.",
+  "authors": [
+    "avnikashyap"
+  ],
+  "contact": {},
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.orpheus.orpheuslite.OrpheusLite"
+    ],
+    "client": [
+      "me.orpheus.orpheuslite.client.OrpheusLiteClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "~${minecraft-version}",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
